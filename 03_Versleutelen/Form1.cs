@@ -24,7 +24,9 @@ namespace _03_Versleutelen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            textBox.Text = septenary("abcdefghijklmnopqrstuvwxyz");
+            // textBox.Text = "As the moon changes her phases every seven days; this number influences all sublunary beings. -Shakespeare";
+            // textBox.Text = "By its occult virtues tended to the accomplishment of all things, to be the dispenser of life and fountain of all its changes. -Hippocrates";
+            textBox.Text = "With the child, it is the teeth that appear in the seventh month and he sheds them at seven years; at twice seven puberty begins, at three times seven all our mental and vital powers are developed, at four times seven he is in his full strength, at five times seven his passions are most developed";
         }
 
         private string septenary(string input)
@@ -45,13 +47,17 @@ namespace _03_Versleutelen
             foreach (char ch in cinput)
             {
                 int it = (int)ch;
-                if (it > 96 && i < 123)
+                if (it > 96 && it < 123)
                 {
                     output += dictionary[ch];
                 }
                 else if (ch == ' ')
                 {
                     output += ' ';
+                }
+                else
+                {
+                    output += ch;
                 }
             }
             Console.WriteLine(output);
@@ -76,9 +82,8 @@ namespace _03_Versleutelen
             foreach (char charIndex in str)
                 str
             allLetters.Append(new char[] { });    
-            
-
             */
+
             string[] possibilities = {};
             // foreach 'int'-value ch in dictionary2.keys
             uint temp = 0;
