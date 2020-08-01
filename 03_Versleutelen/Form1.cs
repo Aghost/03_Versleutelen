@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace _03_Versleutelen
@@ -22,7 +20,6 @@ namespace _03_Versleutelen
         private void Form1_Load(object sender, EventArgs e)
         {
             byte i = 0;
-
             do { dictionary.Add(ALPHABET[i], VALUES[i % 13]); i++; } while (i < ALPHABET.Length);
 
             // textBox.Text = "As the moon changes her phases every seven days; this number influences all sublunary beings. -Shakespeare";
@@ -49,7 +46,7 @@ namespace _03_Versleutelen
                 }
                 else
                 {
-                    output += ' ';
+                    output += ' ';              // reserved for special characters
                 }
             }
             Console.WriteLine(output);
@@ -85,7 +82,6 @@ namespace _03_Versleutelen
                         if (dictionary[numberchar].ToString() == (chstr - 48).ToString())
                         {
                             parray[x][y] = numberchar;      // add to parray
-                            //Console.WriteLine($"add {numberchar} parray at spot {x}:{y}");
                             y++;
                         }
                     }
@@ -94,6 +90,7 @@ namespace _03_Versleutelen
                 x++;
             }
             Console.WriteLine(output);
+
             return output;
         }
 
