@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace _03_Versleutelen
@@ -7,10 +9,10 @@ namespace _03_Versleutelen
     public partial class Form1 : Form
     {
         static char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
-        static int[] VALUES = { 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
+        static byte[] VALUES = { 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
         
-        Dictionary<char, int> dictionary =
-            new Dictionary<char, int>();
+        Dictionary<char, byte> dictionary =
+            new Dictionary<char, byte>();
 
         public Form1()
         {
@@ -19,7 +21,7 @@ namespace _03_Versleutelen
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            int i = 0;
+            byte i = 0;
 
             do { dictionary.Add(ALPHABET[i], VALUES[i % 13]); i++; } while (i < ALPHABET.Length);
 
@@ -35,7 +37,7 @@ namespace _03_Versleutelen
 
             foreach (char ch in cinput)
             {
-                int i = ch;
+                byte i = (byte)ch;
 
                 if (i > 96 && i < 123)
                 {
@@ -47,7 +49,7 @@ namespace _03_Versleutelen
                 }
                 else
                 {
-                    output += ch;
+                    output += ' ';
                 }
             }
             Console.WriteLine(output);
@@ -58,24 +60,42 @@ namespace _03_Versleutelen
         private string deseptenary(string input)
         {
             string output = "";
-            
+            char[][] parray = new char[input.Length][];
+
+            int x = 0;
             foreach (char chstr in input)
             {
-                foreach (char numberchar in dictionary.Keys)
+                if (chstr == ' ')
                 {
-                    if (dictionary[numberchar].ToString() == (chstr -48).ToString())
+                    parray[x] = new char[1];
+                    parray[x][0] = ' ';
+
+                    Console.WriteLine($"add {parray[x][0]} parray at spot {x}:0");
+                }
+
+                else if (chstr > 48 && chstr < 56)
+                {
+                    byte arraysize = 4;
+                    if (chstr == 55) { arraysize -= 2 ; };
+                    parray[x] = new char[arraysize];
+
+                    int y = 0;
+                    foreach (char numberchar in dictionary.Keys)
                     {
-                        // add to possibilities array
-                        Console.WriteLine($"add {numberchar} to the possibilities array at spot");
+                        if (dictionary[numberchar].ToString() == (chstr - 48).ToString())
+                        {
+                            parray[x][y] = numberchar;      // add to parray
+                            //Console.WriteLine($"add {numberchar} parray at spot {x}:{y}");
+                            y++;
+                        }
                     }
                 }
-                Console.WriteLine('\n');
+                Array.ForEach(parray[x], element => output += element.ToString());
+                x++;
             }
             Console.WriteLine(output);
-
             return output;
         }
-        //Array.ForEach(str_array[0], element => Console.WriteLine("element = " + element.ToString()));
 
         private void btn_to_Click(object sender, EventArgs e)
         {
