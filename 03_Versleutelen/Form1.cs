@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
-using System.Linq;
-using System.Security;
 using System.Windows.Forms;
 
 namespace _03_Versleutelen
@@ -11,7 +8,8 @@ namespace _03_Versleutelen
     public partial class Form1 : Form
     {
         static char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
-        static char[] TEBAHPLA = "abcdefghijklmnopqrstuvwxyz".Reverse().ToArray();
+        static string DEFAULT_TEXT = "With the child, it is the teeth that appear in the seventh month and he sheds them at seven years; at twice seven puberty begins, at three times seven all our mental and vital powers are developed, at four times seven he is in his full strength, at five times seven his passions are most developed -Hippocrates";
+
         bool flippedAlpha = false;
 
         static byte[] VALUES = { 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
@@ -31,7 +29,7 @@ namespace _03_Versleutelen
             byte i = 0;
             do { dictionary.Add(ALPHABET[i], VALUES[i % VALUES.Length]); i++; } while (i < ALPHABET.Length);
 
-            textBox.Text = "With the child, it is the teeth that appear in the seventh month and he sheds them at seven years; at twice seven puberty begins, at three times seven all our mental and vital powers are developed, at four times seven he is in his full strength, at five times seven his passions are most developed -Hippocrates";
+            textBox.Text = DEFAULT_TEXT;
         }
 
         private string septenary(string input)
@@ -126,18 +124,13 @@ namespace _03_Versleutelen
         private void btn_revfrom_Click(object sender, EventArgs e)
         {
             flippedAlpha = !flippedAlpha;
-                        
             dictionary.Clear();
 
             byte i = 0;
-            /*            
-            do { dictionary.Add(ALPHABET[tempsize], VALUES[i % VALUES.Length]); i++;
-            } while (i < ALPHABET.Length);
-            */
             
             if (flippedAlpha) {
                 do { dictionary.Add(ALPHABET[ALPHABET.Length - 1 - i], VALUES[i % VALUES.Length]); i++; }
-                while (i < TEBAHPLA.Length);
+                while (i < ALPHABET.Length);
                 btn_revfrom.BackColor = Color.FromName("Lime");
             } else {
                 do { dictionary.Add(ALPHABET[i], VALUES[i % VALUES.Length]); i++; }
@@ -148,7 +141,7 @@ namespace _03_Versleutelen
 
         private void rst_Btn_Click(object sender, EventArgs e)
         {
-            textBox.Text = "";
+            textBox.Text = DEFAULT_TEXT;
             keyTextBox.Text = "";
             keystring = "";
         }
