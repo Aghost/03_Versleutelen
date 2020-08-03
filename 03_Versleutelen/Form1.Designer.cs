@@ -46,7 +46,7 @@
             this.textBox.Multiline = true;
             this.textBox.Name = "textBox";
             this.textBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox.Size = new System.Drawing.Size(652, 243);
+            this.textBox.Size = new System.Drawing.Size(652, 244);
             this.textBox.TabIndex = 0;
             // 
             // btn_to
@@ -86,7 +86,7 @@
             this.keyBox.AutoSize = true;
             this.keyBox.Checked = true;
             this.keyBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.keyBox.Location = new System.Drawing.Point(99, 261);
+            this.keyBox.Location = new System.Drawing.Point(99, 262);
             this.keyBox.Name = "keyBox";
             this.keyBox.Size = new System.Drawing.Size(88, 17);
             this.keyBox.TabIndex = 5;
@@ -98,7 +98,7 @@
             this.extraBox.AutoSize = true;
             this.extraBox.Checked = true;
             this.extraBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.extraBox.Location = new System.Drawing.Point(333, 261);
+            this.extraBox.Location = new System.Drawing.Point(333, 262);
             this.extraBox.Name = "extraBox";
             this.extraBox.Size = new System.Drawing.Size(106, 17);
             this.extraBox.TabIndex = 6;
@@ -131,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 355);
+            this.ClientSize = new System.Drawing.Size(675, 359);
             this.Controls.Add(this.btn_revfrom);
             this.Controls.Add(this.rst_Btn);
             this.Controls.Add(this.extraBox);

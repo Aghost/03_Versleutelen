@@ -9,13 +9,11 @@ namespace _03_Versleutelen
     {
         static char[] ALPHABET = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
         static string DEFAULT_TEXT = "With the child, it is the teeth that appear in the seventh month and he sheds them at seven years; at twice seven puberty begins, at three times seven all our mental and vital powers are developed, at four times seven he is in his full strength, at five times seven his passions are most developed -Hippocrates";
-
+        static byte[] VALUES = { 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
+        
+        string keyString = "";
         bool flippedAlpha = false;
 
-        static byte[] VALUES = { 1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 3, 2, 1 };
-
-        string keystring = "";
-        
         Dictionary<char, byte> dictionary =
             new Dictionary<char, byte>();
 
@@ -38,7 +36,7 @@ namespace _03_Versleutelen
             char[] cinput = input.ToLower().ToCharArray();
 
             char[] keyValues = "11111112222223333332444444".ToCharArray();
-            keystring = "";
+            keyString = "";
 
             int x = 0;
             foreach (char ch in cinput)
@@ -46,20 +44,20 @@ namespace _03_Versleutelen
                 switch (ch)
                 {
                     case char i when (ch > 96 && ch < 123):
-                        keystring += keyValues[ch - 97];
+                        keyString += keyValues[ch - 97];
                         output += dictionary[ch];
                         break;
-                    case ' ': if (x != 0 && cinput[x - 1] != ' ') { keystring += '0'; output += '0'; }; break;
+                    case ' ': if (x != 0 && cinput[x - 1] != ' ') { keyString += '0'; output += '0'; }; break;
                     case '.': goto default;
                     case ',': goto default;
                     case ';': goto default;
                     case char i when (ch > 32 && ch < 48): goto default;
-                    default: if (extraBox.Checked == true) { keystring += ch; output += ch; break; } else keystring += '0'; output += '0'; break;
+                    default: if (extraBox.Checked == true) { keyString += ch; output += ch; break; } else keyString += '0'; output += '0'; break;
                 }
                 x++;
             }
             if (keyBox.Checked == true)
-                keyTextBox.Text = keystring;
+                keyTextBox.Text = keyString;
 
             return output;
         }
@@ -143,7 +141,7 @@ namespace _03_Versleutelen
         {
             textBox.Text = DEFAULT_TEXT;
             keyTextBox.Text = "";
-            keystring = "";
+            keyString = "";
         }
     }
 }
